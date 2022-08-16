@@ -22,7 +22,7 @@ public class SeleniumPresenceTest {
 
         WebDriver driver = getDriver();
 
-        driver.get("http://127.0.0.1/login.php");
+        driver.get("http://196.168.0.1/login.php");
 
     }
 
