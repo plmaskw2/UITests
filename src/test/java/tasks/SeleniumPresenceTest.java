@@ -5,17 +5,21 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
+
+import java.net.MalformedURLException;
+import java.net.URL;
 
 public class SeleniumPresenceTest {
 
     private static ThreadLocal<WebDriver> browser = new ThreadLocal<>();
 
     @BeforeClass
-    static void setupAll() {
+    static void setupAll() throws MalformedURLException {
         WebDriverManager.getInstance(ChromeDriver.class).driverVersion("104.0.5112.79").setup();
         ChromeOptions options = new ChromeOptions();
         options.addArguments("start-maximized"); // open Browser in maximized mode
@@ -24,7 +28,7 @@ public class SeleniumPresenceTest {
         options.addArguments("--disable-gpu"); // applicable to windows os only
         options.addArguments("--disable-dev-shm-usage"); // overcome limited resource problems
         options.addArguments("--no-sandbox"); // Bypass OS security model
-        WebDriver driver = new ChromeDriver(options);
+        WebDriver driver = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), options);
         browser.set(driver);
     }
 
