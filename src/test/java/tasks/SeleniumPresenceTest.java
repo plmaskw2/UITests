@@ -4,13 +4,10 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
-
-import java.time.Duration;
 
 public class SeleniumPresenceTest {
 
@@ -18,7 +15,7 @@ public class SeleniumPresenceTest {
 
     @BeforeClass
     static void setupAll() {
-        WebDriverManager.getInstance(FirefoxDriver.class).driverVersion("91.12").setup();
+        WebDriverManager.getInstance(ChromeDriver.class).driverVersion("104.0.5112.79").setup();
         WebDriver driver = new ChromeDriver();
         browser.set(driver);
     }
