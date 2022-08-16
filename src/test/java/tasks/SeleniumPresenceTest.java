@@ -25,7 +25,7 @@ public class SeleniumPresenceTest {
 
         WebDriver driver = getDriver();
 
-        driver.get("http://196.168.0.1/index.php");
+        driver.get("http://192.168.0.1/index.php");
 
         WebDriverWait wait = new WebDriverWait(driver, 30);
         wait.until(ExpectedConditions.visibilityOf(driver.findElement(By.xpath("//input[@name='login-submit']"))));
