@@ -24,6 +24,7 @@ public class SeleniumPresenceTest {
         options.addArguments("window-size=1024,768");
         options.addArguments("--single-process");
         options.addArguments("--disable-dev-shm-usage");
+        options.setExperimentalOption("useAutomationExtension", false);
         WebDriver driver = new ChromeDriver(options);
         browser.set(driver);
     }
