@@ -19,6 +19,7 @@ public class SeleniumPresenceTest {
         WebDriverManager.getInstance(ChromeDriver.class).driverVersion("104.0.5112.79").setup();
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--no-sandbox");
+        options.addArguments("--headless");
         options.addArguments("--disable-dev-shm-usage");
         WebDriver driver = new ChromeDriver(options);
         browser.set(driver);
