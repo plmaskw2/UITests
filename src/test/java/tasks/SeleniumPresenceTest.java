@@ -18,13 +18,12 @@ public class SeleniumPresenceTest {
     static void setupAll() {
         WebDriverManager.getInstance(ChromeDriver.class).driverVersion("104.0.5112.79").setup();
         ChromeOptions options = new ChromeOptions();
-        options.setBinary("/opt/google/chrome/chrome");
-        options.addArguments("headless");
-        options.addArguments("no-sandbox");
-        options.addArguments("window-size=1024,768");
-        options.addArguments("--single-process");
-        options.addArguments("--disable-dev-shm-usage");
-        options.setExperimentalOption("useAutomationExtension", false);
+        options.addArguments("start-maximized"); // open Browser in maximized mode
+        options.addArguments("disable-infobars"); // disabling infobars
+        options.addArguments("--disable-extensions"); // disabling extensions
+        options.addArguments("--disable-gpu"); // applicable to windows os only
+        options.addArguments("--disable-dev-shm-usage"); // overcome limited resource problems
+        options.addArguments("--no-sandbox"); // Bypass OS security model
         WebDriver driver = new ChromeDriver(options);
         browser.set(driver);
     }
