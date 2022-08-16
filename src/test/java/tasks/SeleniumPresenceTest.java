@@ -4,6 +4,7 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.BeforeClass;
@@ -17,7 +18,7 @@ public class SeleniumPresenceTest {
 
     @BeforeClass
     static void setupAll() {
-        WebDriverManager.getInstance(ChromeDriver.class).driverVersion("104.0.5112.79").setup();
+        WebDriverManager.getInstance(FirefoxDriver.class).driverVersion("91.12").setup();
         WebDriver driver = new ChromeDriver();
         browser.set(driver);
     }
@@ -27,7 +28,7 @@ public class SeleniumPresenceTest {
 
         WebDriver driver = getDriver();
 
-        driver.get("http://localhost/login.php");
+        driver.get("http://196.168.0.1/index.php");
 
         WebDriverWait wait = new WebDriverWait(driver, 30);
         wait.until(ExpectedConditions.visibilityOf(driver.findElement(By.xpath("//input[@name='login-submit']"))));
