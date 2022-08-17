@@ -19,7 +19,6 @@ public class DriverFactory {
         WebDriver webDriver;
         switch (driverType) {
             case CHROME:
-                WebDriverManager.getInstance(ChromeDriver.class).driverVersion("104.0.5112.79").setup();
                 ChromeOptions chromeOptions = new ChromeOptions();
                 chromeOptions.addArguments("--incognito", "-lang=en-GB");
                 webDriver = new ChromeDriver(chromeOptions);
@@ -31,7 +30,6 @@ public class DriverFactory {
         }
         switch (driverType) {
             case FIREFOX:
-                WebDriverManager.getInstance(FirefoxDriver.class).driverVersion("0.30.0").setup();
                 webDriver = new FirefoxDriver();
                 tlDriver.set(webDriver);
                 break;
