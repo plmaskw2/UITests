@@ -38,7 +38,6 @@ public class SeleniumPresenceTest {
 //        WebDriver driver = new ChromeDriver(options);
         WebDriverManager.firefoxdriver().setup();
         FirefoxOptions options = new FirefoxOptions();
-        options.addArguments("--headless");
         WebDriver driver = new FirefoxDriver(options);
         browser.set(driver);
     }
