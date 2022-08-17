@@ -29,7 +29,7 @@ public class SeleniumPresenceTest {
         options.addArguments("--disable-gpu"); // applicable to windows os only
         options.addArguments("--disable-dev-shm-usage"); // overcome limited resource problems
         options.addArguments("--no-sandbox"); // Bypass OS security model
-        WebDriver driver = new RemoteWebDriver(new URL("http://200.168.0.1:4444/wd/hub"), options);
+        WebDriver driver = new ChromeDriver(options);
         browser.set(driver);
     }
 
