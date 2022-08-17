@@ -14,6 +14,8 @@ import org.testng.annotations.Test;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.time.Duration;
+import java.util.HashMap;
+import java.util.Map;
 
 public class SeleniumPresenceTest {
 
@@ -23,6 +25,12 @@ public class SeleniumPresenceTest {
     static void setupAll() {
         WebDriverManager.chromedriver().setup();
         ChromeOptions options = new ChromeOptions();
+        Map<String, Object> prefs = new HashMap<>();
+        prefs.put("profile.managed_default_content_settings.popups", 1);
+        prefs.put("intl.accept_languages", "en-US");
+        options.addArguments("--lang=en-US");
+        options.addArguments("--disable-notifications");
+        options.addArguments("--ignore-certificate-errors");
         options.addArguments("--no-sandbox");
         options.addArguments("start-maximized"); // open Browser in maximized mode
         WebDriver driver = new ChromeDriver(options);
