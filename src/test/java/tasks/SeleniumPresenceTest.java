@@ -23,6 +23,7 @@ public class SeleniumPresenceTest {
     static void setupAll() throws MalformedURLException {
         WebDriverManager.getInstance(ChromeDriver.class).driverVersion("104.0.5112.79").setup();
         ChromeOptions options = new ChromeOptions();
+        options.addArguments("--no-sandbox");
         options.addArguments("start-maximized"); // open Browser in maximized mode
         WebDriver driver = new ChromeDriver(options);
         browser.set(driver);
