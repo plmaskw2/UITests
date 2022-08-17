@@ -13,8 +13,6 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.time.Duration;
 import java.util.HashMap;
 import java.util.Map;
@@ -34,13 +32,9 @@ public class SeleniumPresenceTest {
         options.addArguments("--disable-notifications");
         options.addArguments("--ignore-certificate-errors");
         options.addArguments("--no-sandbox");
-        options.addArguments("--headless");
+        options.setBinary("/opt/google/chrome/google-chrome");
         options.addArguments("start-maximized"); // open Browser in maximized mode
         WebDriver driver = new ChromeDriver(options);
-//        WebDriverManager.firefoxdriver().setup();
-//        FirefoxOptions options = new FirefoxOptions();
-//        options.addArguments("--headless");
-//        WebDriver driver = new FirefoxDriver(options);
         browser.set(driver);
     }
 
