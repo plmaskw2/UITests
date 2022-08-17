@@ -38,7 +38,7 @@
         <dependency>
             <groupId>io.github.bonigarcia</groupId>
             <artifactId>webdrivermanager</artifactId>
-            <version>5.2.3</version>
+            <version>4.4.3</version>
             <exclusions>
                 <exclusion>
                     <groupId>com.google.guava</groupId>
