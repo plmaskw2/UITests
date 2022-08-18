@@ -1,13 +1,11 @@
 package tasks;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
+import org.assertj.core.api.SoftAssertions;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
-import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.firefox.FirefoxOptions;
-import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.BeforeClass;
@@ -19,10 +17,10 @@ import java.util.Map;
 
 public class SeleniumPresenceTest {
 
-    private static ThreadLocal<WebDriver> browser = new ThreadLocal<>();
+    private static WebDriver driver;
 
     @BeforeClass
-    static void setupAll() {
+    static void setup() {
         WebDriverManager.chromedriver().setup();
         ChromeOptions options = new ChromeOptions();
         Map<String, Object> prefs = new HashMap<>();
@@ -32,24 +30,50 @@ public class SeleniumPresenceTest {
         options.addArguments("--disable-notifications");
         options.addArguments("--ignore-certificate-errors");
         options.addArguments("--no-sandbox");
-        options.setBinary("/opt/google/chrome/google-chrome");
-        options.addArguments("start-maximized"); // open Browser in maximized mode
-        WebDriver driver = new ChromeDriver(options);
-        browser.set(driver);
+        options.addArguments("start-maximized");
+        driver = new ChromeDriver(options);
     }
 
     @Test
-    public void SeleniumPresenceTest() {
+    public void seleniumRegistrationFormuleTest() {
+        String avatarPath = System.getProperty("user.dir") + "\\src\\test\\data_provider\\pictures\\avatar.png";
 
-        WebDriver driver = getDriver();
-
-        driver.get("http://200.168.0.1/index.php");
+        driver.get("http://localhost/index.php");
 
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
         wait.until(ExpectedConditions.visibilityOf(driver.findElement(By.xpath("//input[@name='login-submit']"))));
+
+        driver.findElement(By.xpath("//a[@href='signup.php']")).click();
+
+        wait.until(ExpectedConditions.visibilityOf(driver.findElement(By.id("bio"))));
+
+        driver.findElement(By.id("name")).sendKeys("TestUsername");
+        driver.findElement(By.id("email")).sendKeys("email@test.com");
+        driver.findElement(By.id("pwd")).sendKeys("password");
+        driver.findElement(By.id("pwd-repeat")).sendKeys("password");
+        driver.findElement(By.id("f-name")).sendKeys("TestFirstName");
+        driver.findElement(By.id("l-name")).sendKeys("TestLastName");
+        driver.findElement(By.id("headline")).sendKeys("TestBio");
+        driver.findElement(By.id("bio")).sendKeys("Test some description");
+        driver.findElement(By.id("imgInp")).sendKeys(avatarPath);
+        driver.findElement(By.xpath("//label[.='F']")).click();
     }
 
-    private static synchronized WebDriver getDriver() {
-        return browser.get();
+    @Test
+    public void startupPageFieldsValidationTest() {
+        driver.get("http://localhost/index.php");
+
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+        wait.until(ExpectedConditions.visibilityOf(driver.findElement(By.xpath("//input[@name='login-submit']"))));
+
+        SoftAssertions softAssertions = new SoftAssertions();
+        softAssertions.assertThat(driver.findElement(By.xpath("//input[@placeholder='Username']")).isDisplayed()).isTrue();
+        softAssertions.assertThat(driver.findElement(By.xpath("//input[@placeholder='Password']")).isDisplayed()).isTrue();
+        softAssertions.assertThat(driver.findElement(By.xpath("//input[@value='Login']")).isDisplayed()).isTrue();
+        softAssertions.assertThat(driver.findElement(By.xpath("//input[@name='login-submit']")).isDisplayed()).isTrue();
+        softAssertions.assertThat(driver.findElement(By.xpath("//i[@class='fa fa-envelope fa-2x social-icon']")).isDisplayed()).isTrue();
+        softAssertions.assertThat(driver.findElement(By.xpath("//i[@class='fa fa-github fa-2x social-icon']")).isDisplayed()).isTrue();
+        softAssertions.assertAll();
     }
+
 }
