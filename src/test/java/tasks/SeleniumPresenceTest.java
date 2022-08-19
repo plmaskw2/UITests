@@ -36,7 +36,7 @@ public class SeleniumPresenceTest {
 
     @Test
     public void seleniumRegistrationFormTest() {
-        String avatarPath = System.getProperty("user.dir") + "\\src\\test\\data_provider\\pictures\\avatar.png";
+        String avatarPath = System.getProperty("user.dir") + "\\src\\test\\java\\data_provider\\pictures\\avatar.png";
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
         String url = "http://localhost/index.php";
 
@@ -46,7 +46,7 @@ public class SeleniumPresenceTest {
 
         driver.findElement(By.xpath("//a[@href='signup.php']")).click();
 
-        wait.until(ExpectedConditions.visibilityOf(driver.findElement(By.id("bio"))));
+        wait.until(ExpectedConditions.visibilityOf(driver.findElement(By.id("headline"))));
 
         driver.findElement(By.id("name")).sendKeys("TestUsername");
         driver.findElement(By.id("email")).sendKeys("email@test.com");
@@ -55,7 +55,7 @@ public class SeleniumPresenceTest {
         driver.findElement(By.id("f-name")).sendKeys("TestFirstName");
         driver.findElement(By.id("l-name")).sendKeys("TestLastName");
         driver.findElement(By.id("headline")).sendKeys("TestBio");
-        driver.findElement(By.id("bio")).sendKeys("Test some description");
+        driver.findElement(By.id("headline")).sendKeys("Test some description");
         driver.findElement(By.id("imgInp")).sendKeys(avatarPath);
         driver.findElement(By.xpath("//label[.='F']")).click();
     }

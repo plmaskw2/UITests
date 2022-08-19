@@ -50,8 +50,8 @@ public class StartupPage extends WebPage {
         return new DashboardPage(driver).isAt();
     }
 
-    public StartupPage clickSignupButton() {
+    public RegisterPage clickSignupButton() {
         clickElement(signupButton);
-        return this;
+        return new RegisterPage(driver).isAt();
     }
 }

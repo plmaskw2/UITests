@@ -23,6 +23,9 @@ public class MessagesChatPage extends WebPage {
     @FindBy(xpath = ".//button[@id='reply']")
     private WebElement sendButton;
 
+    @FindBy(xpath = ".//div[contains(@class,'ing_msg')][last()]")
+    private WebElement newestMessage;
+
     @FindBy(xpath = ".//div[@class='sent_msg']/p")
     private List<WebElement> sentMessages;
 
@@ -46,6 +49,7 @@ public class MessagesChatPage extends WebPage {
     }
 
     public MessagesChatPage verifySentMessageIsVisible(String text) {
+        scrollToElement(newestMessage);
         Assertions
                 .assertThat(sentMessages.stream().parallel().anyMatch(webElement -> webElement.getText().equals(text)))
                 .as("Message with text: \'"+ text + "\' exists.")
