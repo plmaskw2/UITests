@@ -4,6 +4,8 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Action;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.Select;
 
@@ -40,6 +42,11 @@ public class WebPage {
         element.click();
     }
 
+    public void clickElementAndWait(WebElement element, int wait) {
+        Actions action = new Actions(driver);
+        action.click(element).pause(wait).perform();
+    }
+
     public void enterText(WebElement element, String text) {
         element.click();
         element.sendKeys(text);
@@ -47,6 +54,11 @@ public class WebPage {
 
     public void selectOption(WebElement element, String option) {
         new Select(element).selectByVisibleText(option);
+    }
+
+    public void scrollToElementByAction(WebElement webElement) {
+        Actions action = new Actions(driver);
+        action.scrollToElement(webElement).perform();
     }
 
     public void scrollToElement(WebElement webElement) {
@@ -64,5 +76,12 @@ public class WebPage {
                 .filter(webElement -> webElement.getText().equals(option))
                 .findFirst()
                 .orElseThrow(() -> new NoSuchElementException("Option " + option + " not found!!!"));
+    }
+
+    public void waitForLoading(WebElement webElement, long timeout) {
+        if (isDisplayed(webElement)) {
+            webWaitUtils.waitForNotVisible(webElement, timeout);
+        }
+        webWaitUtils.waitForVisible(webElement, timeout);
     }
 }

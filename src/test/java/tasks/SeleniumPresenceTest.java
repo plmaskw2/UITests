@@ -35,12 +35,13 @@ public class SeleniumPresenceTest {
     }
 
     @Test
-    public void seleniumRegistrationFormuleTest() {
+    public void seleniumRegistrationFormTest() {
         String avatarPath = System.getProperty("user.dir") + "\\src\\test\\data_provider\\pictures\\avatar.png";
-
-        driver.get("http://localhost/index.php");
-
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+        String url = "http://localhost/index.php";
+
+        driver.get(url);
+
         wait.until(ExpectedConditions.visibilityOf(driver.findElement(By.xpath("//input[@name='login-submit']"))));
 
         driver.findElement(By.xpath("//a[@href='signup.php']")).click();

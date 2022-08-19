@@ -1,4 +1,4 @@
-package framework.utils;
+package framework.utils.driver_factory;
 
 public enum DriverType {
     FIREFOX("Firefox"),

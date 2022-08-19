@@ -29,6 +29,12 @@ public class WebWaitUtils {
                 .until(ExpectedConditions.presenceOfAllElementsLocatedBy(by));
     }
 
+    public Boolean waitForTextToBePresentInElement(WebElement webElement, String text, long timeout) {
+         return new WebDriverWait(driver, Duration.ofSeconds(timeout))
+                .pollingEvery(Duration.ofMillis(200))
+                .until(ExpectedConditions.textToBePresentInElement(webElement, text));
+    }
+
     public Boolean waitForPageReadyState(long timeout) {
         return new WebDriverWait(driver, Duration.ofSeconds(timeout)).until(
                 webDriver -> ((JavascriptExecutor) webDriver).executeScript("return document.readyState").equals("complete"));
