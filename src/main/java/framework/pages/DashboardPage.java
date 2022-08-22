@@ -11,14 +11,17 @@ import org.openqa.selenium.support.pagefactory.DefaultElementLocatorFactory;
 
 public class DashboardPage extends WebPage {
 
-    @FindBy(xpath = "//div[@class='container-fluid']")
+    @FindBy(xpath = "//div[@class='container-fluid']/..")
     private WebElement pageContainer;
 
     @FindBy(xpath = "//div[@id='content'][@style='display: block;']")
     private WebElement contentLocator;
 
-    @FindBy(xpath = "//h2[.='DASHBOARD']")
+    @FindBy(xpath = ".//h2[.='DASHBOARD']")
     private WebElement dashboard;
+
+    @FindBy(xpath = ".//li/a[@href='forum.php']")
+    private WebElement klikForumLink;
 
     public DashboardPage(WebDriver driver) {
         super(driver);
@@ -36,5 +39,9 @@ public class DashboardPage extends WebPage {
                 .as("User has logged in successfully")
                 .isTrue();
         return this;
+    }
+
+    public void navigateToForums() {
+        clickElement(klikForumLink);
     }
 }

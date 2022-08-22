@@ -1,6 +1,8 @@
 package data_provider;
 
 import com.github.javafaker.Faker;
+import com.github.javafaker.Food;
+import framework.model.Forum;
 import framework.model.User;
 
 public class DataProvider {
@@ -23,6 +25,14 @@ public class DataProvider {
                 .headline(new Faker().commerce().department())
                 .aboutYourself(new Faker().rickAndMorty().quote())
                 .avatarPath(System.getProperty("user.dir") + "\\src\\test\\java\\data_provider\\pictures\\avatar.png")
+                .build();
+    }
+
+    public static Forum getNewForum() {
+        return Forum.builder()
+                .topicSubject(new Faker().medical().diseaseName())
+                .category("Technical Difficulties")
+                .question(new Faker().medical().symptoms())
                 .build();
     }
 }

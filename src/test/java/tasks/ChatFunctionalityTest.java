@@ -4,10 +4,9 @@ import data_provider.DataProvider;
 import framework.model.User;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
-public class ChatTest extends BaseTest {
+public class ChatFunctionalityTest extends BaseTest {
 
     User user1;
     User user2;
