@@ -40,7 +40,7 @@ public class ForumsPage extends WebPage {
 
     public ForumPage navigateToForumBySubject(String subject) {
         scrollToElement(forumsList.get(forumsList.size() - 1));
-        clickElement(WebListUtils.getElementFromListByTextContains(forumsList, subject));
+        jsClickElement(WebListUtils.getElementFromListByTextContains(forumsList, subject));
         return new ForumPage(driver).isAt();
     }
 }
