@@ -2,11 +2,9 @@ package stepdefs;
 
 import framework.model.Forum;
 import framework.pages.CreateAForumPage;
-import framework.pages.DashboardPage;
 import framework.pages.ForumPage;
 import framework.pages.ForumsPage;
 import io.qameta.allure.Step;
-import org.assertj.core.api.Assertions;
 import org.openqa.selenium.WebDriver;
 
 public class ForumStepdefs extends BaseStepdefs {
