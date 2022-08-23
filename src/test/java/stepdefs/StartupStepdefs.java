@@ -13,7 +13,7 @@ public class StartupStepdefs extends BaseStepdefs {
     }
 
     public StartupStepdefs openApp() {
-        driver.get("http://localhost/index.php");
+        driver.get("http://200.168.0.1/index.php");
         new StartupPage(driver).isAt();
         return this;
     }
