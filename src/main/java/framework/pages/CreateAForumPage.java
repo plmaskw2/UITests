@@ -12,7 +12,7 @@ import org.openqa.selenium.support.ui.Select;
 
 public class CreateAForumPage extends WebPage {
 
-    @FindBy(xpath = "//div[@class='container-contact2']")
+    @FindBy(xpath = "//*[contains(@class, 'container')]")
     private WebElement pageContainer;
 
     @FindBy(xpath = ".//input")

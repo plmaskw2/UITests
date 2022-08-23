@@ -38,7 +38,8 @@ public class ForumsPage extends WebPage {
         return new CreateAForumPage(driver).isAt();
     }
 
-    public void navigateToForumBySubject(String subject) {
+    public ForumPage navigateToForumBySubject(String subject) {
         clickElement(WebListUtils.getElementFromListByTextContains(forumsList, subject));
+        return new ForumPage(driver).isAt();
     }
 }

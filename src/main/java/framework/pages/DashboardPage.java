@@ -41,7 +41,8 @@ public class DashboardPage extends WebPage {
         return this;
     }
 
-    public void navigateToForums() {
+    public ForumsPage navigateToForums() {
         clickElement(klikForumLink);
+        return new ForumsPage(driver).isAt();
     }
 }

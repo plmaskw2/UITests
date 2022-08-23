@@ -46,8 +46,18 @@ public class ForumStepdefs extends BaseStepdefs {
         return this;
     }
 
+    public ForumStepdefs removeReplyByText(String comment) {
+        new ForumPage(driver).clickTrashButtonByComment(comment);
+        return this;
+    }
+
     public ForumStepdefs verifyCommentIsVisible(String text) {
         new ForumPage(driver).verifyCommentIsVisible(text);
+        return this;
+    }
+
+    public ForumStepdefs verifyCommentIsNotVisible(String text) {
+        new ForumPage(driver).verifyCommentIsNotVisible(text);
         return this;
     }
 }
