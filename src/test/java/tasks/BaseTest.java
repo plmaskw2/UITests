@@ -1,6 +1,7 @@
 package tasks;
 
 import framework.utils.driver_factory.DriverFactory;
+import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import stepdefs.*;
 
@@ -13,6 +14,7 @@ public abstract class BaseTest{
     protected DashboardStepdefs dashboardStepdefs;
     protected ForumStepdefs forumStepdefs;
 
+    @Step("Initialize stepdefs classes")
     protected void initializeStepdefs() {
         startupStepdefs = new StartupStepdefs(driver);
         navigationStepdefs = new NavigationStepdefs(driver);
