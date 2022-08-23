@@ -31,7 +31,7 @@ public class ForumStepdefs extends BaseStepdefs {
     }
 
     @Step
-    public ForumStepdefs mavigateToViewForumsFromCreateForumView() {
+    public ForumStepdefs navigateToViewForumsFromCreateForumView() {
         new CreateAForumPage(driver).navigateToViewForums();
         return this;
     }

@@ -34,11 +34,12 @@ public class ForumsPage extends WebPage {
 
     public CreateAForumPage clickCreateForumButton() {
         scrollToElement(createForumButton);
-        clickElement(createForumButton);
+        jsClickElement(createForumButton);
         return new CreateAForumPage(driver).isAt();
     }
 
     public ForumPage navigateToForumBySubject(String subject) {
+        scrollToElement(forumsList.get(forumsList.size() - 1));
         clickElement(WebListUtils.getElementFromListByTextContains(forumsList, subject));
         return new ForumPage(driver).isAt();
     }

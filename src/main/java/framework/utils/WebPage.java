@@ -38,6 +38,10 @@ public class WebPage {
         }
     }
 
+    public void jsClickElement(WebElement element) {
+        ((JavascriptExecutor) driver).executeScript("arguments[0].click();", element);
+    }
+
     public void clickElement(WebElement element) {
         element.click();
     }

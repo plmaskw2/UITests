@@ -44,7 +44,7 @@ public class ForumInteractionsTest extends BaseTest {
         forumStepdefs
                 .createNewTopic(forum)
                 .verifyNewForumCreated()
-                .mavigateToViewForumsFromCreateForumView()
+                .navigateToViewForumsFromCreateForumView()
                 .openForumBySubject(forum.getTopicSubject())
                 .addReply(replyUser)
                 .verifyCommentIsVisible(replyUser)
@@ -54,7 +54,7 @@ public class ForumInteractionsTest extends BaseTest {
         startupStepdefs.logInToApplication(user2.getUserName(), user2.getPassword());
         navigationStepdefs.navigateToForums();
         forumStepdefs
-                .mavigateToViewForumsFromCreateForumView()
+                .navigateToViewForumsFromCreateForumView()
                 .openForumBySubject(forum.getTopicSubject())
                 .addReply(replyUser2)
                 .verifyCommentIsVisible(replyUser2);
@@ -62,7 +62,7 @@ public class ForumInteractionsTest extends BaseTest {
         startupStepdefs.logInToApplication(user.getUserName(), user.getPassword());
         navigationStepdefs.navigateToForums();
         forumStepdefs
-                .mavigateToViewForumsFromCreateForumView()
+                .navigateToViewForumsFromCreateForumView()
                 .openForumBySubject(forum.getTopicSubject())
                 .verifyCommentIsVisible(replyUser2);
     }
