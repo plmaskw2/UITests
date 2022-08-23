@@ -28,7 +28,7 @@ public class ForumsPage extends WebPage {
     }
 
     public ForumsPage isAt() {
-        webWaitUtils.waitForVisible(createForumButton, Timeouts.LOW);
+        webWaitUtils.waitForClickable(createForumButton, Timeouts.LOW);
         return this;
     }
 
