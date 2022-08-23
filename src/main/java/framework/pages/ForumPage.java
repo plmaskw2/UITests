@@ -1,9 +1,7 @@
 package framework.pages;
 
 import framework.model.ForumComment;
-import framework.model.Message;
 import framework.table.ForumCommentRow;
-import framework.table.MessageRow;
 import framework.utils.Timeouts;
 import framework.utils.WebPage;
 import org.assertj.core.api.Assertions;
