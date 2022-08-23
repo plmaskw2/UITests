@@ -43,7 +43,7 @@ public class StartupStepdefs extends BaseStepdefs {
         return this;
     }
 
-    @Step("User register new user {0}")
+    @Step("User register new user {user.userName}")
     public StartupStepdefs registerUser(User user) {
         new RegisterPage(driver)
                 .enterUsername(user.getUserName())

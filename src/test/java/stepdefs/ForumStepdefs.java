@@ -13,7 +13,7 @@ public class ForumStepdefs extends BaseStepdefs {
         super(driver);
     }
 
-    @Step
+    @Step("User creates new Topic {forum.topicSubject}")
     public ForumStepdefs createNewTopic(Forum forum) {
         new ForumsPage(driver)
                 .clickCreateForumButton()
@@ -24,25 +24,25 @@ public class ForumStepdefs extends BaseStepdefs {
         return this;
     }
 
-    @Step
+    @Step("User verifies that new Forum is created")
     public ForumStepdefs verifyNewForumCreated() {
         new CreateAForumPage(driver).verifyNewForumCreated();
         return this;
     }
 
-    @Step
+    @Step("User navigates to View Forums")
     public ForumStepdefs navigateToViewForumsFromCreateForumView() {
         new CreateAForumPage(driver).navigateToViewForums();
         return this;
     }
 
-    @Step
+    @Step("User opens forum {0}")
     public ForumStepdefs openForumBySubject(String subject) {
         new ForumsPage(driver).navigateToForumBySubject(subject);
         return this;
     }
 
-    @Step
+    @Step("User add reply {0}")
     public ForumStepdefs addReply(String subject) {
         new ForumPage(driver)
                 .enterReply(subject)
@@ -50,19 +50,19 @@ public class ForumStepdefs extends BaseStepdefs {
         return this;
     }
 
-    @Step
+    @Step("User removes reply {0}")
     public ForumStepdefs removeReplyByText(String comment) {
         new ForumPage(driver).clickTrashButtonByComment(comment);
         return this;
     }
 
-    @Step
+    @Step("User verifies that comment {0} is visible")
     public ForumStepdefs verifyCommentIsVisible(String text) {
         new ForumPage(driver).verifyCommentIsVisible(text);
         return this;
     }
 
-    @Step
+    @Step("User verifies that comment {0} is not visible")
     public ForumStepdefs verifyCommentIsNotVisible(String text) {
         new ForumPage(driver).verifyCommentIsNotVisible(text);
         return this;
