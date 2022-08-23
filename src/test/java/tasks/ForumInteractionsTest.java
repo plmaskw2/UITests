@@ -65,6 +65,5 @@ public class ForumInteractionsTest extends BaseTest {
                 .mavigateToViewForumsFromCreateForumView()
                 .openForumBySubject(forum.getTopicSubject())
                 .verifyCommentIsVisible(replyUser2);
-
     }
 }
