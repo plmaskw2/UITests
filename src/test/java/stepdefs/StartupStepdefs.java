@@ -21,13 +21,14 @@ public class StartupStepdefs extends BaseStepdefs {
         properties.load(new FileInputStream(System.getProperty("user.dir") + "/src/main/resources/" + "configuration.properties"));
     }
 
-    @Step
+    @Step("User open application")
     public StartupStepdefs openApp() {
         driver.get(properties.getProperty("url"));
         new StartupPage(driver).isAt();
         return this;
     }
 
+    @Step("User log in to application")
     public StartupStepdefs logInToApplication(String username, String password) {
         new StartupPage(driver)
                 .enterUsername(username)
@@ -36,13 +37,13 @@ public class StartupStepdefs extends BaseStepdefs {
         return this;
     }
 
-    @Step
+    @Step("User navigates to register form")
     public StartupStepdefs navigateToRegisterForm() {
         new StartupPage(driver).clickSignupButton();
         return this;
     }
 
-    @Step
+    @Step("User register new user {0}")
     public StartupStepdefs registerUser(User user) {
         new RegisterPage(driver)
                 .enterUsername(user.getUserName())
@@ -58,19 +59,19 @@ public class StartupStepdefs extends BaseStepdefs {
         return this;
     }
 
-    @Step
+    @Step("User verifies that he is signed up successfully")
     public StartupStepdefs verifySignupSuccessful() {
         new RegisterPage(driver).verifySignupSuccessful();
         return this;
     }
 
-    @Step
+    @Step("user verifies that he is logged in successfully")
     public StartupStepdefs verifyLoggedInSuccessful() {
         new DashboardPage(driver).verifyLoggedInSuccessful();
         return this;
     }
 
-    @Step
+    @Step("User navigates to startup page")
     public StartupStepdefs navigateToStartupPageFromRegistrationForm() {
         new RegisterPage(driver).clickLoginButton();
         return this;

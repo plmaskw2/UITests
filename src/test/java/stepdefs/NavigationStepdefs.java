@@ -11,19 +11,19 @@ public class NavigationStepdefs extends BaseStepdefs {
         super(driver);
     }
 
-    @Step
+    @Step("User navigates to Messages tab")
     public NavigationStepdefs navigateToMessages() {
         new NavigationBarPage(driver).navigateToMessages();
         return this;
     }
 
-    @Step
+    @Step("User navigates to Forums tab")
     public NavigationStepdefs navigateToForums() {
         new DashboardPage(driver).navigateToForums();
         return this;
     }
 
-    @Step
+    @Step("User logged out")
     public NavigationStepdefs logout() {
         new NavigationBarPage(driver).clickLogoutButton();
         return this;

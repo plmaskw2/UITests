@@ -11,25 +11,25 @@ public class MessagesStepdefs extends BaseStepdefs {
         super(driver);
     }
 
-    @Step
+    @Step("Users opens chat with {0}")
     public MessagesStepdefs openChatWithUser(String username) {
         new MessagesHomePage(driver).openUserChat(username);
         return this;
     }
 
-    @Step
+    @Step("Users sent message: {0}")
     public MessagesStepdefs sentMessageToUser(String text) {
         new MessagesChatPage(driver).enterMessage(text);
         return this;
     }
 
-    @Step
+    @Step("User verifies that message {0} has been sent")
     public MessagesStepdefs verifySentMessage(String text) {
         new MessagesChatPage(driver).verifySentMessageIsVisible(text);
         return this;
     }
 
-    @Step
+    @Step("Users verifies that he is received a message {0}")
     public MessagesStepdefs verifyReceivedMessage(String text) {
         new MessagesChatPage(driver).verifyReceivedMessageIsVisible(text);
         return this;
