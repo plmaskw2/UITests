@@ -18,7 +18,7 @@ public class StartupStepdefs extends BaseStepdefs {
     @SneakyThrows
     public StartupStepdefs(WebDriver driver) {
         super(driver);
-        properties.load(new FileInputStream("configuration.properties"));
+        properties.load(new FileInputStream(System.getProperty("user.dir") + "/src/main/resources/" + "configuration.properties"));
     }
 
     @Step
