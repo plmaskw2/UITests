@@ -1,7 +1,6 @@
 package data_provider;
 
 import com.github.javafaker.Faker;
-import com.github.javafaker.Food;
 import framework.model.Forum;
 import framework.model.User;
 
