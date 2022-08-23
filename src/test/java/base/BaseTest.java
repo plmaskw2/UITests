@@ -1,4 +1,4 @@
-package tasks;
+package base;
 
 import framework.utils.driver_factory.DriverFactory;
 import io.qameta.allure.Step;

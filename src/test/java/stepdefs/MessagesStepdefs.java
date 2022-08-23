@@ -1,5 +1,6 @@
 package stepdefs;
 
+import base.BaseStepdefs;
 import framework.pages.MessagesChatPage;
 import framework.pages.MessagesHomePage;
 import io.qameta.allure.Step;

@@ -1,4 +1,4 @@
-package stepdefs;
+package base;
 
 import org.openqa.selenium.WebDriver;
 

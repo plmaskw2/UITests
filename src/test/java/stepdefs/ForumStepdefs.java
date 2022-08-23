@@ -1,5 +1,6 @@
 package stepdefs;
 
+import base.BaseStepdefs;
 import framework.model.Forum;
 import framework.pages.CreateAForumPage;
 import framework.pages.ForumPage;

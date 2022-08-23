@@ -1,5 +1,6 @@
 package tasks;
 
+import base.BaseTest;
 import data_provider.DataProvider;
 import framework.model.Forum;
 import framework.model.User;

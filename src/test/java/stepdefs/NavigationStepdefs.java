@@ -1,5 +1,6 @@
 package stepdefs;
 
+import base.BaseStepdefs;
 import framework.pages.DashboardPage;
 import framework.pages.NavigationBarPage;
 import io.qameta.allure.Step;

@@ -1,5 +1,6 @@
 package tasks;
 
+import base.BaseTest;
 import data_provider.DataProvider;
 import framework.model.User;
 import org.testng.annotations.BeforeClass;

@@ -1,5 +1,6 @@
 package stepdefs;
 
+import base.BaseStepdefs;
 import framework.model.User;
 import framework.pages.DashboardPage;
 import framework.pages.RegisterPage;
