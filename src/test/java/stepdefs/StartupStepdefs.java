@@ -5,17 +5,25 @@ import framework.pages.DashboardPage;
 import framework.pages.RegisterPage;
 import framework.pages.StartupPage;
 import io.qameta.allure.Step;
+import lombok.SneakyThrows;
 import org.openqa.selenium.WebDriver;
+
+import java.io.FileInputStream;
+import java.util.Properties;
 
 public class StartupStepdefs extends BaseStepdefs {
 
+    Properties properties = new Properties();
+
+    @SneakyThrows
     public StartupStepdefs(WebDriver driver) {
         super(driver);
+        properties.load(new FileInputStream("configuration.properties"));
     }
 
     @Step
     public StartupStepdefs openApp() {
-        driver.get("http://200.168.0.1/index.php");
+        driver.get(properties.getProperty("url"));
         new StartupPage(driver).isAt();
         return this;
     }
