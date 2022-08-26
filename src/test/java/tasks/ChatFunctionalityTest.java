@@ -3,10 +3,15 @@ package tasks;
 import base.BaseTest;
 import data_provider.DataProvider;
 import framework.model.User;
+import io.qameta.allure.Description;
+import io.qameta.allure.Epic;
+import io.qameta.allure.Feature;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
+@Epic("Regression Tests")
+@Feature("Chat Feature")
 public class ChatFunctionalityTest extends BaseTest {
 
     User user1;
@@ -18,6 +23,7 @@ public class ChatFunctionalityTest extends BaseTest {
     }
 
     @BeforeMethod
+    @Description("Prerequisites")
     public void prerequisites() {
         user1 = DataProvider.getNewUser();
         user2 = DataProvider.getNewUser();
@@ -32,6 +38,7 @@ public class ChatFunctionalityTest extends BaseTest {
     }
 
     @Test
+    @Description("Chat Functionality Test")
     public void chatTest() {
         String messageContent = DataProvider.getMessageContent();
         String messageContent2 = DataProvider.getMessageContent();

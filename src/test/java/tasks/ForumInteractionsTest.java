@@ -4,10 +4,15 @@ import base.BaseTest;
 import data_provider.DataProvider;
 import framework.model.Forum;
 import framework.model.User;
+import io.qameta.allure.Description;
+import io.qameta.allure.Epic;
+import io.qameta.allure.Feature;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
+@Epic("Regression Tests")
+@Feature("Forum Feature")
 public class ForumInteractionsTest extends BaseTest {
 
     User user;
@@ -19,6 +24,7 @@ public class ForumInteractionsTest extends BaseTest {
     }
 
     @BeforeMethod
+    @Description("Prerequisites")
     public void prerequisites() {
         user = DataProvider.getNewUser();
         user2 = DataProvider.getNewUser();
@@ -33,6 +39,7 @@ public class ForumInteractionsTest extends BaseTest {
     }
 
     @Test
+    @Description("Forum Integrations Test")
     public void forumInteractionsTest() {
         Forum forum = DataProvider.getNewForum();
         String replyUser = DataProvider.getMessageContent();

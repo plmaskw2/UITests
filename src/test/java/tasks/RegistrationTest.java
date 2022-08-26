@@ -9,8 +9,8 @@ import io.qameta.allure.Feature;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-@Epic("Regression tests")
-@Feature("Registration test")
+@Epic("Regression Tests")
+@Feature("Registration Feature")
 public class RegistrationTest extends BaseTest {
 
     @BeforeClass
@@ -19,7 +19,7 @@ public class RegistrationTest extends BaseTest {
     }
 
     @Test
-    @Description("Registration test")
+    @Description("Registration Test")
     public void registrationTest() {
         User newUser = DataProvider.getNewUser();
 
