@@ -1,11 +1,13 @@
 package framework.utils.driver_factory;
 
+import framework.utils.ConfigurationUtils;
 import org.openqa.selenium.WebDriver;
 
 import java.util.concurrent.TimeUnit;
 
 public abstract class DriverManager {
 
+    protected final String GRID_HUB = ConfigurationUtils.properties.getProperty("gridHub");
     protected ThreadLocal<WebDriver> drivers = new ThreadLocal<>();
     protected abstract WebDriver createDriver();
 

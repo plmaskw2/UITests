@@ -5,26 +5,19 @@ import framework.model.User;
 import framework.pages.DashboardPage;
 import framework.pages.RegisterPage;
 import framework.pages.StartupPage;
+import framework.utils.ConfigurationUtils;
 import io.qameta.allure.Step;
-import lombok.SneakyThrows;
 import org.openqa.selenium.WebDriver;
-
-import java.io.FileInputStream;
-import java.util.Properties;
 
 public class StartupStepdefs extends BaseStepdefs {
 
-    Properties properties = new Properties();
-
-    @SneakyThrows
     public StartupStepdefs(WebDriver driver) {
         super(driver);
-        properties.load(new FileInputStream(System.getProperty("user.dir") + "/src/main/resources/" + "configuration.properties"));
     }
 
     @Step("User open application")
     public StartupStepdefs openApp() {
-        driver.get(properties.getProperty("url"));
+        driver.get(ConfigurationUtils.properties.getProperty("url"));
         new StartupPage(driver).isAt();
         return this;
     }

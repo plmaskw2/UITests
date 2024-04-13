@@ -4,12 +4,14 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Action;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.Select;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class WebPage {
+    protected static final Logger logger = LoggerFactory.getLogger(WebPage.class);
 
     protected WebDriver driver;
     protected WebWaitUtils webWaitUtils;
@@ -43,15 +45,18 @@ public class WebPage {
     }
 
     public void clickElement(WebElement element) {
+        logger.info(("Clicked element: '" + element + "'"));
         element.click();
     }
 
     public void clickElementAndWait(WebElement element, int wait) {
         Actions action = new Actions(driver);
+        logger.info(("Clicked element: '" + element + "'"));
         action.click(element).pause(wait).perform();
     }
 
     public void enterText(WebElement element, String text) {
+        logger.info(("Entered text: '%s' into '" + element + "'").formatted(text));
         element.click();
         element.sendKeys(text);
     }

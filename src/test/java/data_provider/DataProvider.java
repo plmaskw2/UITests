@@ -23,7 +23,7 @@ public class DataProvider {
                 .lastName(lastName)
                 .headline(new Faker().commerce().department())
                 .aboutYourself(new Faker().rickAndMorty().quote())
-                .avatarPath(System.getProperty("user.dir") + "/src/test/java/data_provider/pictures/avatar.png")
+                .avatarPath(System.getProperty("user.dir") + "\\src\\test\\java\\data_provider\\pictures\\avatar.png")
                 .build();
     }
 
