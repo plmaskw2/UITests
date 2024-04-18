@@ -1,3 +1,14 @@
+Requirements
+
+To run this application, you need:
+- Java JDK '21.0.2'
+- Maven '3.9.6'
+
+(recommended)
+- Docker installed on remote machine
+- Basic understanding of Docker Compose
+
+
 ## Selenoid
 Be aware about browser and docker images versions. Below versions are examples.
 To run selenoid server:
