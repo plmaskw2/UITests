@@ -13,6 +13,7 @@ import java.net.URL;
 
 public class FirefoxDriverManager extends DriverManager {
 
+    //TODO: develop Firefox for Remote Grid and Selenoid, like Chrome.
     @Override
     protected WebDriver createDriver() {
         WebDriver driver = null;

@@ -7,6 +7,7 @@ import java.util.concurrent.TimeUnit;
 
 public abstract class DriverManager {
 
+    protected final String SELENOID_HUB = ConfigurationUtils.properties.getProperty("selenoidHub");
     protected final String GRID_HUB = ConfigurationUtils.properties.getProperty("gridHub");
     protected ThreadLocal<WebDriver> drivers = new ThreadLocal<>();
     protected abstract WebDriver createDriver();
