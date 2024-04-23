@@ -6,9 +6,8 @@ import framework.model.User;
 import io.qameta.allure.Description;
 import io.qameta.allure.Epic;
 import io.qameta.allure.Feature;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 @Epic("Regression Tests")
 @Feature("Chat Feature")
@@ -17,12 +16,8 @@ public class ChatFunctionalityTest extends BaseTest {
     User user1;
     User user2;
 
-    @BeforeClass
-    public void setup(){
-        initializeStepdefs();
-    }
 
-    @BeforeMethod
+    @BeforeEach
     @Description("Prerequisites")
     public void prerequisites() {
         user1 = DataProvider.getNewUser();

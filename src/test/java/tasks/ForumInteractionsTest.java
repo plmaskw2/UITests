@@ -7,8 +7,7 @@ import framework.model.User;
 import io.qameta.allure.Description;
 import io.qameta.allure.Epic;
 import io.qameta.allure.Feature;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.BeforeMethod;
+import org.junit.jupiter.api.BeforeEach;
 import org.testng.annotations.Test;
 
 @Epic("Regression Tests")
@@ -18,12 +17,7 @@ public class ForumInteractionsTest extends BaseTest {
     User user;
     User user2;
 
-    @BeforeClass
-    public void setup() {
-        initializeStepdefs();
-    }
-
-    @BeforeMethod
+    @BeforeEach
     @Description("Prerequisites")
     public void prerequisites() {
         user = DataProvider.getNewUser();
