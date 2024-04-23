@@ -1,11 +1,14 @@
 package framework.pages;
 
+import framework.utils.ConfigurationUtils;
 import framework.utils.Timeouts;
 import framework.utils.WebListUtils;
 import framework.utils.WebPage;
 import org.assertj.core.api.Assertions;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.remote.LocalFileDetector;
+import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.pagefactory.DefaultElementLocatorFactory;
@@ -83,7 +86,7 @@ public class RegisterPage extends WebPage {
     }
 
     public RegisterPage uploadAvatar(String avatarPath) {
-        setAvatarButton.sendKeys(avatarPath);
+        uploadFile(setAvatarButton, avatarPath);
         return this;
     }
 

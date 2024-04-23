@@ -1,14 +1,19 @@
 package framework.utils;
 
+import framework.pages.RegisterPage;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.remote.LocalFileDetector;
+import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.Select;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.util.Arrays;
 
 public class WebPage {
     protected static final Logger logger = LoggerFactory.getLogger(WebPage.class);
@@ -63,6 +68,15 @@ public class WebPage {
 
     public void selectOption(WebElement element, String option) {
         new Select(element).selectByVisibleText(option);
+    }
+
+    public void uploadFile(WebElement element, String filePath) {
+        //TODO: Format description to include only file name, withouth whole path.
+        logger.info(("Uploaded file: '%s' into '" + element + "'").formatted(filePath));
+        if (ConfigurationUtils.properties.getProperty("driverType").equals("REMOTE")) {
+            ((RemoteWebDriver) driver).setFileDetector(new LocalFileDetector());
+        }
+        element.sendKeys(filePath);
     }
 
     public void scrollToElementByAction(WebElement webElement) {

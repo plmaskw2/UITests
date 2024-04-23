@@ -8,15 +8,50 @@
     <artifactId>KLIK-Project</artifactId>
     <version>1.0-SNAPSHOT</version>
     <properties>
+        <!-- Project Encoding -->
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+        <!-- Java Version -->
         <java.version>21</java.version>
+
+        <!-- Maven Compiler Source and Target -->
         <maven.compiler.source>${java.version}</maven.compiler.source>
         <maven.compiler.target>${java.version}</maven.compiler.target>
+
+        <!-- Selenium Version -->
         <selenium.version>4.3.0</selenium.version>
+
+        <!-- AspectJ Version -->
         <aspectj.version>1.9.22</aspectj.version>
-        <allure.version>2.25.0</allure.version>
-        <maven-surefire-plugin>3.0.0-M4</maven-surefire-plugin>
+
+        <!-- Allure Version -->
+        <allure.version>2.28.0</allure.version>
+
+        <!-- SLF4J Version -->
+        <slf4j.version>2.0.1</slf4j.version>
+
+        <!-- Logback Version -->
+        <logback.version>1.5.0</logback.version>
+
+        <!-- WebDriverManager Version -->
+        <webdrivermanager.version>5.8.0</webdrivermanager.version>
+
+        <!-- Lombok Version -->
+        <lombok.version>1.18.30</lombok.version>
+
+        <!-- AssertJ Version -->
+        <assertj.version>3.24.2</assertj.version>
+
+        <!-- JUnit Jupiter Version -->
+        <junit-jupiter-api.version>5.7.2</junit-jupiter-api.version>
+
+        <!-- Java Faker Version -->
+        <javafaker.version>1.0.2</javafaker.version>
+
+        <!-- TestNG Version -->
+        <testng.version>7.9.0</testng.version>
     </properties>
+
     <dependencyManagement>
         <dependencies>
             <dependency>
@@ -28,13 +63,9 @@
             </dependency>
         </dependencies>
     </dependencyManagement>
+
     <dependencies>
-        <dependency>
-            <groupId>org.testng</groupId>
-            <artifactId>testng</artifactId>
-            <version>7.9.0</version>
-            <scope>test</scope>
-        </dependency>
+        <!-- Selenium Core Dependencies -->
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>selenium-remote-driver</artifactId>
@@ -47,75 +78,51 @@
         </dependency>
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
-            <artifactId>selenium-chrome-driver</artifactId>
-            <version>${selenium.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>selenium-java</artifactId>
             <version>${selenium.version}</version>
         </dependency>
-        <dependency>
-            <groupId>org.seleniumhq.selenium</groupId>
-            <artifactId>selenium-java</artifactId>
-            <version>${selenium.version}</version>
-        </dependency>
+
+        <!-- WebDriver Management -->
         <dependency>
             <groupId>io.github.bonigarcia</groupId>
             <artifactId>webdrivermanager</artifactId>
-            <version>5.8.0</version>
+            <version>${webdrivermanager.version}</version>
         </dependency>
+
+    <!-- Logging Dependencies -->
+        <!-- SLF4J (Simple Logging Facade for Java) -->
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
-            <version>2.0.1</version>
+            <version>${slf4j.version}</version>
         </dependency>
+
+        <!-- Logback (Logging Framework) -->
         <dependency>
             <groupId>ch.qos.logback</groupId>
             <artifactId>logback-classic</artifactId>
-            <version>1.5.0</version>
+            <version>${logback.version}</version>
             <scope>test</scope>
         </dependency>
-        <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-            <version>1.18.30</version>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.assertj</groupId>
-            <artifactId>assertj-core</artifactId>
-            <version>3.19.0</version>
-            <scope>test</scope>
-        </dependency>
+
+    <!-- Testing Framework Dependencies -->
+        <!-- JUnit Jupiter -->
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-api</artifactId>
-            <version>5.7.2</version>
+            <version>${junit-jupiter-api.version}</version>
             <scope>test</scope>
         </dependency>
+
+        <!-- TestNG -->
         <dependency>
-            <groupId>org.assertj</groupId>
-            <artifactId>assertj-core</artifactId>
-            <version>3.19.0</version>
-            <scope>compile</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.aspectj</groupId>
-            <artifactId>aspectjweaver</artifactId>
-            <version>${aspectj.version}</version>
-            <scope>runtime</scope>
-        </dependency>
-        <dependency>
-            <groupId>com.github.javafaker</groupId>
-            <artifactId>javafaker</artifactId>
-            <version>1.0.2</version>
-        </dependency>
-        <dependency>
-            <groupId>io.qameta.allure</groupId>
-            <artifactId>allure-junit5</artifactId>
+            <groupId>org.testng</groupId>
+            <artifactId>testng</artifactId>
+            <version>${testng.version}</version>
             <scope>test</scope>
         </dependency>
+
+        <!-- JUnit -->
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
@@ -123,6 +130,62 @@
             <scope>test</scope>
         </dependency>
 
+    <!-- Assertion Dependencies -->
+        <!-- AssertJ Core -->
+        <dependency>
+            <groupId>org.assertj</groupId>
+            <artifactId>assertj-core</artifactId>
+            <version>${assertj.version}</version>
+            <scope>compile</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.assertj</groupId>
+            <artifactId>assertj-core</artifactId>
+            <version>${assertj.version}</version>
+            <scope>test</scope>
+        </dependency>
+
+    <!-- Allure Reporting Dependencies -->
+        <!-- Allure BOM (Bill of Materials) -->
+        <dependency>
+            <groupId>io.qameta.allure</groupId>
+            <artifactId>allure-bom</artifactId>
+            <version>${allure.version}</version>
+            <type>pom</type>
+            <scope>import</scope>
+        </dependency>
+
+        <!-- Allure JUnit 5 Adapter -->
+        <dependency>
+            <groupId>io.qameta.allure</groupId>
+            <artifactId>allure-junit5</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+    <!-- Additional Dependencies -->
+        <!-- Lombok (Java Library) -->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>${lombok.version}</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <!-- AspectJ Weaver -->
+        <dependency>
+            <groupId>org.aspectj</groupId>
+            <artifactId>aspectjweaver</artifactId>
+            <version>${aspectj.version}</version>
+            <scope>runtime</scope>
+        </dependency>
+
+        <!-- Java Faker -->
+        <dependency>
+            <groupId>com.github.javafaker</groupId>
+            <artifactId>javafaker</artifactId>
+            <version>${javafaker.version}</version>
+        </dependency>
     </dependencies>
 
     <repositories>
@@ -174,7 +237,7 @@
                 <artifactId>allure-maven</artifactId>
                 <version>2.8</version>
                 <configuration>
-                    <reportVersion>2.28.0</reportVersion>
+                    <reportVersion>${allure.version}</reportVersion>
                     <resultsDirectory>${project.build.directory}/allure-results</resultsDirectory>
                 </configuration>
             </plugin>
