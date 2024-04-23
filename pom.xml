@@ -14,10 +14,20 @@
         <maven.compiler.target>${java.version}</maven.compiler.target>
         <selenium.version>4.3.0</selenium.version>
         <aspectj.version>1.9.22</aspectj.version>
-        <allure.version>2.13.8</allure.version>
+        <allure.version>2.25.0</allure.version>
         <maven-surefire-plugin>3.0.0-M4</maven-surefire-plugin>
     </properties>
-
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>io.qameta.allure</groupId>
+                <artifactId>allure-bom</artifactId>
+                <version>${allure.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
     <dependencies>
         <dependency>
             <groupId>org.testng</groupId>
@@ -103,8 +113,8 @@
         </dependency>
         <dependency>
             <groupId>io.qameta.allure</groupId>
-            <artifactId>allure-testng</artifactId>
-            <version>${allure.version}</version>
+            <artifactId>allure-junit5</artifactId>
+            <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>junit</groupId>
