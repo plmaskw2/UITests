@@ -40,8 +40,8 @@ public class StartupPage extends WebPage {
         return this;
     }
 
-    public StartupPage enterPassword(String password) {
-        enterText(WebListUtils.getElementFromListByAttributeEquals(inputList, "id", "password"), password);
+    public StartupPage enterPassword(@SuppressWarnings("allure:hideParams") String password) {
+        enterText(WebListUtils.getElementFromListByAttributeEquals(inputList, "id", "password"), password, true);
         return this;
     }
 

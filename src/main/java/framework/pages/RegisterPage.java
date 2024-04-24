@@ -55,8 +55,8 @@ public class RegisterPage extends WebPage {
         return this;
     }
 
-    public RegisterPage enterPassword(String password) {
-        enterText(WebListUtils.getElementFromListByAttributeEquals(inputList, "placeholder", "Password"), password);
+    public RegisterPage enterPassword(@SuppressWarnings("allure:hideParams")  String password) {
+        enterText(WebListUtils.getElementFromListByAttributeEquals(inputList, "placeholder", "Password"), password, true);
         return this;
     }
 

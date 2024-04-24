@@ -66,6 +66,14 @@ public class WebPage {
         element.sendKeys(text);
     }
 
+    public void enterText(WebElement element, @SuppressWarnings("allure:hideParams") String text, boolean hide) {
+        if (hide){
+            logger.info(("Entered hidden text into '" + element + "'"));
+        }
+        element.click();
+        element.sendKeys(text);
+    }
+
     public void selectOption(WebElement element, String option) {
         new Select(element).selectByVisibleText(option);
     }

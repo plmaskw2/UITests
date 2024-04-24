@@ -23,7 +23,7 @@ public class StartupStepdefs extends BaseStepdefs {
     }
 
     @Step("User log in to application")
-    public StartupStepdefs logInToApplication(String username, String password) {
+    public StartupStepdefs logInToApplication(String username, @SuppressWarnings("allure:hideParams") String password) {
         new StartupPage(driver)
                 .enterUsername(username)
                 .enterPassword(password)
