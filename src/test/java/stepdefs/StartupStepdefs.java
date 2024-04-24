@@ -38,7 +38,7 @@ public class StartupStepdefs extends BaseStepdefs {
     }
 
     @Step("User register new user {user.userName}")
-    public StartupStepdefs registerUser(User user) {
+    public StartupStepdefs registerUser(@SuppressWarnings("allure:hideParams") User user) {
         new RegisterPage(driver)
                 .enterUsername(user.getUserName())
                 .enterEmail(user.getEmail())
