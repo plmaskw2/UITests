@@ -153,6 +153,11 @@
             <artifactId>allure-junit5</artifactId>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>io.qameta.allure</groupId>
+            <artifactId>allure-java-commons</artifactId>
+            <version>${allure.version}</version>
+        </dependency>
 
     <!-- Additional Dependencies -->
         <!-- Lombok (Java Library) -->

@@ -1,6 +1,8 @@
 package framework.utils;
 
 import framework.pages.RegisterPage;
+import io.qameta.allure.Param;
+import io.qameta.allure.model.Parameter;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
@@ -66,7 +68,7 @@ public class WebPage {
         element.sendKeys(text);
     }
 
-    public void enterText(WebElement element, @SuppressWarnings("allure:hideParams") String text, boolean hide) {
+    public void enterText(WebElement element, @Param(mode= Parameter.Mode.HIDDEN) String text, boolean hide) {
         if (hide){
             logger.info(("Entered hidden text into '" + element + "'"));
         }

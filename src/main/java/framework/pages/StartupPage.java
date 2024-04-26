@@ -3,6 +3,8 @@ package framework.pages;
 import framework.utils.WebListUtils;
 import framework.utils.Timeouts;
 import framework.utils.WebPage;
+import io.qameta.allure.Param;
+import io.qameta.allure.model.Parameter;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -40,7 +42,7 @@ public class StartupPage extends WebPage {
         return this;
     }
 
-    public StartupPage enterPassword(@SuppressWarnings("allure:hideParams") String password) {
+    public StartupPage enterPassword(@Param(mode= Parameter.Mode.HIDDEN) String password) {
         enterText(WebListUtils.getElementFromListByAttributeEquals(inputList, "id", "password"), password, true);
         return this;
     }

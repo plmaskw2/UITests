@@ -1,14 +1,13 @@
 package framework.pages;
 
-import framework.utils.ConfigurationUtils;
 import framework.utils.Timeouts;
 import framework.utils.WebListUtils;
 import framework.utils.WebPage;
+import io.qameta.allure.Param;
+import io.qameta.allure.model.Parameter;
 import org.assertj.core.api.Assertions;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.remote.LocalFileDetector;
-import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.pagefactory.DefaultElementLocatorFactory;
@@ -55,7 +54,7 @@ public class RegisterPage extends WebPage {
         return this;
     }
 
-    public RegisterPage enterPassword(@SuppressWarnings("allure:hideParams")  String password) {
+    public RegisterPage enterPassword(@Param(mode=Parameter.Mode.HIDDEN) String password) {
         enterText(WebListUtils.getElementFromListByAttributeEquals(inputList, "placeholder", "Password"), password, true);
         return this;
     }

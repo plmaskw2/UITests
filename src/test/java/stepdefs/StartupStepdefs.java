@@ -6,7 +6,9 @@ import framework.pages.DashboardPage;
 import framework.pages.RegisterPage;
 import framework.pages.StartupPage;
 import framework.utils.ConfigurationUtils;
+import io.qameta.allure.Param;
 import io.qameta.allure.Step;
+import io.qameta.allure.model.Parameter;
 import org.openqa.selenium.WebDriver;
 
 public class StartupStepdefs extends BaseStepdefs {
@@ -23,7 +25,7 @@ public class StartupStepdefs extends BaseStepdefs {
     }
 
     @Step("User log in to application")
-    public StartupStepdefs logInToApplication(String username, @SuppressWarnings("allure:hideParams") String password) {
+    public StartupStepdefs logInToApplication(String username, @Param(mode= Parameter.Mode.HIDDEN) String password) {
         new StartupPage(driver)
                 .enterUsername(username)
                 .enterPassword(password)
@@ -38,7 +40,7 @@ public class StartupStepdefs extends BaseStepdefs {
     }
 
     @Step("User register new user {user.userName}")
-    public StartupStepdefs registerUser(@SuppressWarnings("allure:hideParams") User user) {
+    public StartupStepdefs registerUser(@Param(mode=Parameter.Mode.HIDDEN) User user) {
         new RegisterPage(driver)
                 .enterUsername(user.getUserName())
                 .enterEmail(user.getEmail())
