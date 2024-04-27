@@ -8,10 +8,12 @@ import io.qameta.allure.Description;
 import io.qameta.allure.Epic;
 import io.qameta.allure.Feature;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
 @Epic("Regression Tests")
 @Feature("Forum Feature")
+@Tag("US-01")
 public class ForumInteractionsTest extends BaseTest {
 
     User user;
