@@ -1,0 +1,26 @@
+pipeline {
+    agent any
+    stages {
+        stage('Build') {
+            steps {
+                mvn clean install -DskipTest
+            }
+        }
+        stage('Test') {
+            steps {
+                mvn test -Dgroups=${tag}
+            }
+        }
+    }
+    post {
+        always {
+            allure([
+                    includeProperties: false,
+                    jdk: '',
+                    properties: [],
+                    reportBuildPolicy: 'ALWAYS',
+                    results: [[path: 'allure-results']]
+            ])
+        }
+    }
+}
