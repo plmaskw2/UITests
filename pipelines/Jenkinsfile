@@ -1,11 +1,6 @@
 pipeline {
     agent any
     stages {
-        stage('Prepare report') {
-            steps {
-                sh 'allure generate --clean'
-            }
-        }
         stage('Build') {
             steps {
                 sh 'mvn install -DskipTests'
