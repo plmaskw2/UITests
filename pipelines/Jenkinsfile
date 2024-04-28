@@ -1,8 +1,8 @@
 pipeline {
     agent any
     stages {
-        stage('Prepare'){
-            parallel{
+        stage('Prepare') {
+            parallel {
                 stage('Clear') {
                     steps {
                         sh 'rm -r allure-results'
@@ -14,10 +14,10 @@ pipeline {
                     }
                 }
             }
-            stage('Test') {
-                steps {
-                    sh "mvn test -Dgroups='${Tag}'"
-                }
+        }
+        stage('Test') {
+            steps {
+                sh "mvn test -Dgroups='${Tag}'"
             }
         }
     }
