@@ -8,8 +8,14 @@ import io.qameta.allure.listener.TestLifecycleListener;
 import io.qameta.allure.model.Status;
 import io.qameta.allure.model.TestResult;
 import lombok.SneakyThrows;
+import org.apache.commons.io.FileUtils;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.junit.jupiter.api.extension.Extensions;
+import org.junit.platform.engine.TestExecutionResult;
+import org.junit.platform.launcher.TestExecutionListener;
+import org.junit.platform.launcher.TestIdentifier;
+import org.openqa.selenium.NoSuchSessionException;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
@@ -17,8 +23,12 @@ import org.testng.annotations.AfterTest;
 import stepdefs.*;
 
 import java.io.ByteArrayInputStream;
+import java.io.File;
+import java.io.IOException;
 
-public abstract class WebBaseTestJUnit implements TestLifecycleListener {
+import static io.qameta.allure.Allure.addAttachment;
+
+public abstract class WebBaseTestJUnit implements TestExecutionListener {
     protected WebDriver driver;
     protected StartupStepdefs startupStepdefs;
     protected NavigationStepdefs navigationStepdefs;
@@ -39,10 +49,15 @@ public abstract class WebBaseTestJUnit implements TestLifecycleListener {
     }
 
     @Override
-    public void beforeTestStop(TestResult result) {
-        if (result.getStatus() == Status.FAILED || result.getStatus() == Status.BROKEN) {
-            if (driver != null)
-                Allure.addAttachment(result.getName(), new ByteArrayInputStream(((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES)));
+    public void executionFinished(TestIdentifier testIdentifier, TestExecutionResult testExecutionResult) {
+        if (testExecutionResult.getStatus().equals(TestExecutionResult.Status.FAILED)) {
+            try {
+                File screenshotAs = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+                addAttachment("Screenshot", FileUtils.openInputStream(screenshotAs));
+            } catch (IOException | NoSuchSessionException e) {
+            } finally {
+                driver.quit();
+            }
         }
     }
 }
