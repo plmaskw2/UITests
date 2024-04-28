@@ -1,18 +1,18 @@
 pipeline {
     agent any
     stages {
-        stage('Clear & Build') {
-            steps {
-                parallel(
-                    clean: {
-                        sh 'rm -r allure-results'
-                    }
-                    build: {
-                        sh 'mvn install -DskipTests'
-                    }
-                )
+        parallel(
+            stage('Clear') {
+                steps {
+                    sh 'rm -r allure-results'
+                }
             }
-        }
+            stage('Build') {
+                steps {
+                    sh 'mvn install -DskipTests'
+                }
+            }
+        )
         stage('Test') {
             steps {
                 sh "mvn test -Dgroups='${Tag}'"
