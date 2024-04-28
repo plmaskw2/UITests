@@ -1,6 +1,7 @@
 pipeline {
     agent any
     stages {
+    stage{
         parallel{
             stage('Clear') {
                 steps {
@@ -17,6 +18,7 @@ pipeline {
             steps {
                 sh "mvn test -Dgroups='${Tag}'"
             }
+        }
         }
     }
     post {
