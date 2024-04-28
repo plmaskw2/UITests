@@ -1,10 +1,16 @@
 pipeline {
     agent any
     stages {
-        stage('Build') {
+        stage('Clear & Build') {
             steps {
-                sh 'mvn clean'
-                sh 'mvn install -DskipTests'
+                parallel(
+                    clean: {
+                        sh 'rm -r allure-results'
+                    }
+                    build: {
+                        sh 'mvn install -DskipTests'
+                    }
+                )
             }
         }
         stage('Test') {
