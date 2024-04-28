@@ -8,6 +8,7 @@ import io.qameta.allure.listener.TestLifecycleListener;
 import io.qameta.allure.model.Status;
 import io.qameta.allure.model.TestResult;
 import lombok.SneakyThrows;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
@@ -37,8 +38,8 @@ public abstract class WebBaseTestJUnit implements TestLifecycleListener {
         forumStepdefs = new ForumStepdefs(driver);
     }
 
-    @AfterTest
-    public void closeDriver(TestResult result) {
+    @Override
+    public void beforeTestStop(TestResult result) {
         if (result.getStatus() == Status.FAILED || result.getStatus() == Status.BROKEN) {
             if (driver != null)
                 Allure.addAttachment(result.getName(), new ByteArrayInputStream(((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES)));
