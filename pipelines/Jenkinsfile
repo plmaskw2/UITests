@@ -5,7 +5,7 @@ pipeline {
             parallel {
                 stage('Clear') {
                     steps {
-                        sh 'rm -r allure-results'
+                        sh '[ -d allure-results ] && rm -rf allure-results'
                     }
                 }
                 stage('Build') {
