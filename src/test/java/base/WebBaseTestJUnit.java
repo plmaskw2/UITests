@@ -10,7 +10,9 @@ import io.qameta.allure.model.TestResult;
 import lombok.SneakyThrows;
 import org.apache.commons.io.FileUtils;
 import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.extension.AfterTestExecutionCallback;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.junit.jupiter.api.extension.ExtensionContext;
 import org.junit.jupiter.api.extension.Extensions;
 import org.junit.platform.engine.TestExecutionResult;
 import org.junit.platform.launcher.TestExecutionListener;
@@ -19,6 +21,8 @@ import org.openqa.selenium.NoSuchSessionException;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.remote.RemoteWebDriver;
 import org.testng.annotations.AfterTest;
 import stepdefs.*;
 
@@ -28,7 +32,7 @@ import java.io.IOException;
 
 import static io.qameta.allure.Allure.addAttachment;
 
-public abstract class WebBaseTestJUnit implements TestExecutionListener {
+public abstract class WebBaseTestJUnit implements AfterTestExecutionCallback {
     protected WebDriver driver;
     protected StartupStepdefs startupStepdefs;
     protected NavigationStepdefs navigationStepdefs;
@@ -49,15 +53,13 @@ public abstract class WebBaseTestJUnit implements TestExecutionListener {
     }
 
     @Override
-    public void executionFinished(TestIdentifier testIdentifier, TestExecutionResult testExecutionResult) {
-        if (testExecutionResult.getStatus().equals(TestExecutionResult.Status.FAILED)) {
+    public void afterTestExecution(ExtensionContext context) {
+        if (context.getExecutionException().isPresent()) {
+            File file = ((ChromeDriver) driver).getScreenshotAs((OutputType.FILE));
             try {
-                File screenshotAs = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
-                addAttachment("Screenshot", FileUtils.openInputStream(screenshotAs));
-            } catch (IOException | NoSuchSessionException e) {
-            } finally {
-                driver.quit();
+                Allure.addAttachment("Screenshot", FileUtils.openInputStream(file));
             }
+            catch (IOException e) {}
         }
     }
 }
