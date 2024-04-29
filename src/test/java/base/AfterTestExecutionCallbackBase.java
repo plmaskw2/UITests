@@ -23,7 +23,7 @@ public class AfterTestExecutionCallbackBase implements AfterTestExecutionCallbac
         System.out.println("TRY");
         if (context.getExecutionException().isPresent()) {
             System.out.println("TRUE");
-            String screenshotAsBase64 = "<img src='data:image/png;base64," + ((TakesScreenshot) driver).getScreenshotAs(OutputType.BASE64) + "' style='width: 120px; height: 120px' />";
+            String screenshotAsBase64 = "<img src='data:text/html;base64," + ((TakesScreenshot) driver).getScreenshotAs(OutputType.BASE64) + "' style='width: 120px; height: 120px' />";
             Allure.addAttachment("Screenshot",  screenshotAsBase64);
         }
     }
