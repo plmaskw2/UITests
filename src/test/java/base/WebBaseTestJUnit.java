@@ -32,6 +32,7 @@ import java.io.IOException;
 
 import static io.qameta.allure.Allure.addAttachment;
 
+@ExtendWith(AfterTestExecutionCallbackBase.class)
 public abstract class WebBaseTestJUnit {
     protected WebDriver driver;
     protected StartupStepdefs startupStepdefs;
