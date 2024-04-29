@@ -14,6 +14,7 @@ import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -31,7 +32,7 @@ public class MessagesHomePage extends WebPage {
     @FindBy(xpath = ".//div[@class='inbox_chat']/a")
     private List<WebElement> messagesList;
 
-    private List<Message> listOfMessages ;
+    private List<Message> listOfMessages = new ArrayList<>();
 
     public MessagesHomePage(WebDriver driver) {
         super(driver);
@@ -69,7 +70,6 @@ public class MessagesHomePage extends WebPage {
                 }
                 listOfMessages = messagesList.stream().map(webElement -> new MessageRow(driver, webElement).toModel()).collect(Collectors.toList());
                 return countUsers == messagesList.size();
-
             }
         };
     }
