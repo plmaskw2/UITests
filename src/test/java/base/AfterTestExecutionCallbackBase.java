@@ -15,6 +15,7 @@ import org.openqa.selenium.remote.RemoteWebDriver;
 import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.IOException;
+import java.util.function.Supplier;
 
 public class AfterTestExecutionCallbackBase implements AfterTestExecutionCallback {
     @Override
@@ -28,7 +29,7 @@ public class AfterTestExecutionCallbackBase implements AfterTestExecutionCallbac
     private void takeScreenshot(WebDriver driver) {
         if (driver instanceof TakesScreenshot) {
             byte[] screenshotBytes = ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
-            Allure.addAttachment("Screenshot", new ByteArrayInputStream(screenshotBytes));
+            Allure.addByteAttachmentAsync("Screenshot", "image/png", "png", (Supplier<byte[]>) new ByteArrayInputStream(screenshotBytes));
         }
     }
 }
