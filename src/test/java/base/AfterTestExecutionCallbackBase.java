@@ -17,12 +17,12 @@ public class AfterTestExecutionCallbackBase implements AfterTestExecutionCallbac
     @Override
     public void afterTestExecution(ExtensionContext context) {
         WebDriver driver = DriverFactory.valueOf(ConfigurationUtils.properties.getProperty("driver")).getDriverManager().getDriver();
-        if (context.getExecutionException().isPresent()) {
+//        if (context.getExecutionException().isPresent()) {
             File file = ((ChromeDriver) driver).getScreenshotAs((OutputType.FILE));
             try {
                 Allure.addAttachment("Screenshot", FileUtils.openInputStream(file));
             }
             catch (IOException e) {}
-        }
+//        }
     }
 }
