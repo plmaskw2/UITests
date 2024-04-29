@@ -9,6 +9,7 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.extension.AfterTestExecutionCallback;
 import org.junit.jupiter.api.extension.ExtensionContext;
 import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
@@ -22,11 +23,8 @@ public class AfterTestExecutionCallbackBase implements AfterTestExecutionCallbac
         System.out.println("TRY");
         if (context.getExecutionException().isPresent()) {
             System.out.println("TRUE");
-            File file = ((ChromeDriver) driver).getScreenshotAs((OutputType.FILE));
-            try {
-                Allure.addAttachment("Screenshot", FileUtils.openInputStream(file));
-            }
-            catch (IOException e) {}
+            String screenshotAsBase64 = "<img src='data:image/png;base64," + ((TakesScreenshot) driver).getScreenshotAs(OutputType.BASE64) + "' style='width: 120px; height: 120px' />";
+            Allure.addAttachment("Screenshot",  screenshotAsBase64);
         }
     }
 }
