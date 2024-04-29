@@ -18,12 +18,11 @@ public abstract class DriverManager {
                 drivers.get().quit();
                 drivers.remove();
             } catch (Exception e) {}
-
         }
     }
 
     public WebDriver getDriver() {
-        if (null == drivers.get()) {
+        if (drivers.get() == null) {
             drivers.set(this.createDriver());
         }
         drivers.get().manage().timeouts().implicitlyWait(1, TimeUnit.SECONDS);

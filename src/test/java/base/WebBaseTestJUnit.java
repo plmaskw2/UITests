@@ -32,7 +32,8 @@ import java.io.IOException;
 
 import static io.qameta.allure.Allure.addAttachment;
 
-public abstract class WebBaseTestJUnit implements AfterTestExecutionCallback {
+@ExtendWith(AfterTestExecutionCallbackBase.class)
+public abstract class WebBaseTestJUnit {
     protected WebDriver driver;
     protected StartupStepdefs startupStepdefs;
     protected NavigationStepdefs navigationStepdefs;
@@ -50,16 +51,5 @@ public abstract class WebBaseTestJUnit implements AfterTestExecutionCallback {
         messagesStepdefs = new MessagesStepdefs(driver);
         dashboardStepdefs = new DashboardStepdefs(driver);
         forumStepdefs = new ForumStepdefs(driver);
-    }
-
-    @Override
-    public void afterTestExecution(ExtensionContext context) {
-        if (context.getExecutionException().isPresent()) {
-            File file = ((ChromeDriver) driver).getScreenshotAs((OutputType.FILE));
-            try {
-                Allure.addAttachment("Screenshot", FileUtils.openInputStream(file));
-            }
-            catch (IOException e) {}
-        }
     }
 }
