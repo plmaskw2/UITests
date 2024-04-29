@@ -12,6 +12,7 @@ import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
+import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.IOException;
 
@@ -20,15 +21,14 @@ public class AfterTestExecutionCallbackBase implements AfterTestExecutionCallbac
     public void afterTestExecution(ExtensionContext context) {
         WebDriver driver = DriverFactory.valueOf(ConfigurationUtils.properties.getProperty("driver")).getDriverManager().getDriver();
         if (context.getExecutionException().isPresent()) {
-            try {
-                Allure.addAttachment("Screenshot", FileUtils.openInputStream(getScreenshot(driver)));
-            }
-            catch (IOException ignore) {}
+            takeScreenshot(driver);
         }
     }
 
-    @Attachment(value = "Page screenshot", type = "image/png")
-    private File getScreenshot(WebDriver driver) {
-        return ((RemoteWebDriver) driver).getScreenshotAs(OutputType.FILE);
+    private void takeScreenshot(WebDriver driver) {
+        if (driver instanceof TakesScreenshot) {
+            byte[] screenshotBytes = ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
+            Allure.addAttachment("Screenshot", new ByteArrayInputStream(screenshotBytes));
+        }
     }
 }
