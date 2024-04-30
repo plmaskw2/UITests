@@ -15,6 +15,7 @@ public class AfterTestExecutionCallbackBase implements AfterTestExecutionCallbac
         if (context.getExecutionException().isPresent()) {
             takeScreenshot(driver);
         }
+        driver.quit();
     }
 
     @Attachment(value = "Screenshot", type = "image/png")
