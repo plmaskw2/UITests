@@ -23,10 +23,10 @@ public class AfterTestExecutionCallbackBase implements AfterTestExecutionCallbac
         if (context.getExecutionException().isPresent()) {
             takeScreenshot(driver);
         }
-        driver.quit();
         if (ConfigurationUtils.properties.getProperty("driverType").equals("REMOTE")) {
             attachVideo(sessionId);
         }
+        driver.quit();
     }
 
     @Attachment(value = "Video", type = "text/html")
