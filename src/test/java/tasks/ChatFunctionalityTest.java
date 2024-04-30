@@ -47,7 +47,7 @@ public class ChatFunctionalityTest extends BaseTest {
         messagesStepdefs
                 .openChatWithUser(user2.getUserName())
                 .sentMessageToUser(messageContent)
-                .verifySentMessage(messageContent);
+                .verifySentMessage(messageContent2);
         navigationStepdefs.logout();
         startupStepdefs.logInToApplication(user2.getUserName(), user2.getPassword());
         navigationStepdefs.navigateToMessages();
