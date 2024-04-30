@@ -44,8 +44,9 @@ public class ChromeDriverManager extends DriverManager {
 
     private ChromeOptions getChromeOptions() {
         ChromeOptions options = new ChromeOptions();
+        options.addArguments("--lang=en-US");
         options.addArguments("--disable-notifications");
-        options.addArguments("--start-maximized");
+        options.addArguments("start-maximized");
         options.addArguments("--disable-features=EnableEphemeralFlashPermission");
         options.addArguments("--disable-infobars");
         options.addArguments("--no-sandbox");
