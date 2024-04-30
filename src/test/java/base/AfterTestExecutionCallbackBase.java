@@ -1,7 +1,5 @@
 package base;
 
-import framework.utils.ConfigurationUtils;
-import framework.utils.driver_factory.DriverFactory;
 import io.qameta.allure.Allure;
 import io.qameta.allure.Attachment;
 import org.apache.commons.io.FileUtils;
@@ -21,14 +19,12 @@ public class AfterTestExecutionCallbackBase implements AfterTestExecutionCallbac
         Object testInstance = context.getRequiredTestInstance();
         WebDriver driver = ((WebBaseTestJUnit) testInstance).driver;
         if (context.getExecutionException().isPresent()) {
-            Augmenter augmenter = new Augmenter();
-            TakesScreenshot ts = (TakesScreenshot) augmenter.augment(driver);
-            File getImage = ts.getScreenshotAs(OutputType.FILE);
-            try {
-                FileUtils.copyFile(getImage, new File(System.getProperty("user.dir") + "\\screenshots\\screenshot.jpg"));
-            }
-            catch (IOException io) {}
-            Allure.addAttachment("Screenshot", "image/jpeg","\\screenshots\\screenshot.jpg");
+            takeScreenshot(driver);
         }
+    }
+
+    @Attachment(value = "Screenshot", type = "image/png")
+    public static byte[] takeScreenshot(WebDriver driver) {
+        return ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
     }
 }
