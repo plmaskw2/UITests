@@ -1,17 +1,11 @@
 package base;
 
-import io.qameta.allure.Allure;
 import io.qameta.allure.Attachment;
-import org.apache.commons.io.FileUtils;
 import org.junit.jupiter.api.extension.AfterTestExecutionCallback;
 import org.junit.jupiter.api.extension.ExtensionContext;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.remote.Augmenter;
-
-import java.io.File;
-import java.io.IOException;
 
 public class AfterTestExecutionCallbackBase implements AfterTestExecutionCallback {
     @Override
