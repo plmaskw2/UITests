@@ -22,7 +22,8 @@ public class ChromeDriverManager extends DriverManager {
             case "REMOTE":
                 if (ConfigurationUtils.properties.getProperty("selenoid").equals("true")) {
                     cap.setCapability("selenoid:options", Map.of(
-                            "enableVNC", true
+                            "enableVNC", true,
+                            "enableVideo", true
                     ));
                     return WebDriverManager.chromedriver()
                             .capabilities(cap)
