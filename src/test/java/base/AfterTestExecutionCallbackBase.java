@@ -30,7 +30,7 @@ public class AfterTestExecutionCallbackBase implements AfterTestExecutionCallbac
                 FileUtils.copyFile(getImage, new File(System.getProperty("user.dir") + "\\screenshots\\screenshot.jpg"));
             }
             catch (IOException io) {}
-            Allure.addAttachment("Screenshot", "\\screenshots\\screenshot.jpg");
+            Allure.addAttachment("Screenshot", "image/jpeg","\\screenshots\\screenshot.jpg");
 
         }
     }
