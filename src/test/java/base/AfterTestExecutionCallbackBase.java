@@ -28,11 +28,11 @@ public class AfterTestExecutionCallbackBase implements AfterTestExecutionCallbac
         }
     }
 
-    @Attachment(value = "Video", type = "video/mp4")
+    @Attachment(value = "Video", type = "text/html")
     public static byte[] attachVideo(SessionId sessionId) {
         byte[] byteArr = null;
         try {
-            byteArr = IOUtils.toByteArray(new FileInputStream("http://192.168.0.121:5555/video/%s.mp4".formatted(sessionId.toString())));
+            byteArr = IOUtils.toByteArray(new FileInputStream("<html><body><video width=\"320\" height=\"240\" controls><source src=\"http://192.168.0.121:5555/video/%s.mp4\" type=\"video/mp4\"></video></body></html>".formatted(sessionId.toString())));
         } catch (IOException e) {
             e.printStackTrace();
         }
