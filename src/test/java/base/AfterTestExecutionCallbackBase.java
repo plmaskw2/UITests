@@ -2,6 +2,7 @@ package base;
 
 import com.google.common.io.Files;
 import framework.utils.ConfigurationUtils;
+import io.qameta.allure.Allure;
 import io.qameta.allure.Attachment;
 import org.apache.commons.compress.utils.IOUtils;
 import org.junit.jupiter.api.extension.AfterTestExecutionCallback;
@@ -30,11 +31,11 @@ public class AfterTestExecutionCallbackBase implements AfterTestExecutionCallbac
         driver.quit();
     }
 
-    @Attachment(value = "Video", type = "text/html")
-    public static InputStream attachVideo(SessionId sessionId) {
+    public static void attachVideo(SessionId sessionId) {
         String htmlContent = String.format("<html><body><video width=\"320\" height=\"240\" controls><source src=\"http://192.168.0.121:5555/video/%s.mp4\" type=\"video/mp4\"></video></body></html>", sessionId);
         byte[] htmlBytes = htmlContent.getBytes(StandardCharsets.UTF_8);
-        return new ByteArrayInputStream(htmlBytes);
+        InputStream inputStream = new ByteArrayInputStream(htmlBytes);
+        Allure.addAttachment("Video", inputStream);
     }
 
     @Attachment(value = "Screenshot", type = "image/png")
