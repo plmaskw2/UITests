@@ -48,6 +48,7 @@ public class ChromeDriverManager extends DriverManager {
         options.addArguments("--start-maximized");
         options.addArguments("--disable-features=EnableEphemeralFlashPermission");
         options.addArguments("--disable-infobars");
+        options.addArguments("--no-sandbox");
         options.addArguments("--remote-allow-origins=*");
         options.addArguments("--disable-dev-shm-usage");
         options.addArguments("--ignore-cerfiticate-errors");
