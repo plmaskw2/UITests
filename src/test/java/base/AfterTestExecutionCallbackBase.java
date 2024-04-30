@@ -33,7 +33,8 @@ public class AfterTestExecutionCallbackBase implements AfterTestExecutionCallbac
     @Attachment(value = "Video", type = "text/html")
     public static InputStream attachVideo(SessionId sessionId) {
         String htmlContent = String.format("<html><body><video width=\"320\" height=\"240\" controls><source src=\"http://192.168.0.121:5555/video/%s.mp4\" type=\"video/mp4\"></video></body></html>", sessionId);
-        return new ByteArrayInputStream(htmlContent.getBytes(StandardCharsets.UTF_8));
+        byte[] htmlBytes = htmlContent.getBytes(StandardCharsets.UTF_8);
+        return new ByteArrayInputStream(htmlBytes);
     }
 
     @Attachment(value = "Screenshot", type = "image/png")
