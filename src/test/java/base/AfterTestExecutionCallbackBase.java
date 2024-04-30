@@ -10,6 +10,7 @@ import org.junit.jupiter.api.extension.ExtensionContext;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.devtools.v85.io.IO;
 import org.openqa.selenium.remote.Augmenter;
 
 import java.io.ByteArrayInputStream;
@@ -24,9 +25,12 @@ public class AfterTestExecutionCallbackBase implements AfterTestExecutionCallbac
         if (context.getExecutionException().isPresent()) {
             Augmenter augmenter = new Augmenter();
             TakesScreenshot ts = (TakesScreenshot) augmenter.augment(driver);
-            byte[] screenshotBytes = ts.getScreenshotAs(OutputType.BYTES);
-            String screenshotAsBase64 = Base64.getEncoder().encodeToString(screenshotBytes);
-            Allure.addAttachment("Screenshot", "image/png", screenshotAsBase64);
+            File getImage = ts.getScreenshotAs(OutputType.FILE);
+            try {
+                FileUtils.copyFile(getImage, new File(System.getProperty("user.dir") + "\\screenshots\\screenshot.jpg"));
+            }
+            catch (IOException io) {}
+            Allure.addAttachment("Screenshot", "\\screenshots\\screenshot.jpg");
 
         }
     }
