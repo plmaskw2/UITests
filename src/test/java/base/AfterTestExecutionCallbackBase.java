@@ -1,5 +1,6 @@
 package base;
 
+import com.google.common.io.Files;
 import framework.utils.ConfigurationUtils;
 import io.qameta.allure.Attachment;
 import org.apache.commons.compress.utils.IOUtils;
@@ -29,10 +30,10 @@ public class AfterTestExecutionCallbackBase implements AfterTestExecutionCallbac
     }
 
     @Attachment(value = "Video", type = "text/html")
-    public static byte[] attachVideo(SessionId sessionId) {
-        byte[] byteArr = null;
+    public static InputStream attachVideo(SessionId sessionId) {
+        InputStream byteArr = null;
         try {
-            byteArr = IOUtils.toByteArray(new FileInputStream("<html><body><video width=\"320\" height=\"240\" controls><source src=\"http://192.168.0.121:5555/video/%s.mp4\" type=\"video/mp4\"></video></body></html>".formatted(sessionId.toString())));
+            return Files.asByteSource(new File("<html><body><video width=\"320\" height=\"240\" controls><source src=\"http://192.168.0.121:5555/video/%s.mp4\" type=\"video/mp4\"></video></body></html>".formatted(sessionId.toString()))).openStream();
         } catch (IOException e) {
             e.printStackTrace();
         }
