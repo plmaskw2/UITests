@@ -15,6 +15,7 @@ import org.openqa.selenium.remote.Augmenter;
 import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.IOException;
+import java.util.Base64;
 
 public class AfterTestExecutionCallbackBase implements AfterTestExecutionCallback {
     @Override
@@ -22,8 +23,9 @@ public class AfterTestExecutionCallbackBase implements AfterTestExecutionCallbac
         WebDriver driver = DriverFactory.valueOf(ConfigurationUtils.properties.getProperty("driver")).getDriverManager().getDriver();
         if (context.getExecutionException().isPresent()) {
 
-                String screenshotAsBase64 = "<img src='data:image/png;base64," + ((TakesScreenshot) driver).getScreenshotAs(OutputType.BASE64) + "' style='width: 120px; height: 120px' />";
-                Allure.addAttachment("Screenshot", "text/html", screenshotAsBase64);
+            byte[] screenshotBytes = ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
+            String screenshotAsBase64 = Base64.getEncoder().encodeToString(screenshotBytes);
+            Allure.addAttachment("Screenshot", "image/png", screenshotAsBase64);
 
         }
     }
