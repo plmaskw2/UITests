@@ -21,7 +21,7 @@ public class FirefoxDriverManager extends DriverManager {
             case "REMOTE":
                 System.setProperty("webdriver.gecko.driver", "/snap/bin/geckodriver");
                 try {
-                    driver = new RemoteWebDriver(new URL(GRID_HUB), getFirefoxOptions());
+                    driver = new RemoteWebDriver(new URL(ConfigurationUtils.GRID_HUB), getFirefoxOptions());
                 }
                 catch (MalformedURLException ignore) {}
             case "LOCAL":

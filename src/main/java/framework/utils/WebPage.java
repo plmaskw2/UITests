@@ -1,6 +1,5 @@
 package framework.utils;
 
-import framework.pages.RegisterPage;
 import io.qameta.allure.Param;
 import io.qameta.allure.model.Parameter;
 import org.openqa.selenium.JavascriptExecutor;
@@ -14,8 +13,6 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.Select;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import java.util.Arrays;
 
 public class WebPage {
     protected static final Logger logger = LoggerFactory.getLogger(WebPage.class);
@@ -83,7 +80,7 @@ public class WebPage {
     public void uploadFile(WebElement element, String filePath) {
         //TODO: Format description to include only file name, withouth whole path.
         logger.info(("Uploaded file: '%s' into '" + element + "'").formatted(filePath));
-        if (ConfigurationUtils.properties.getProperty("driverType").equals("REMOTE")) {
+        if (ConfigurationUtils.isRemote) {
             ((RemoteWebDriver) driver).setFileDetector(new LocalFileDetector());
         }
         element.sendKeys(filePath);

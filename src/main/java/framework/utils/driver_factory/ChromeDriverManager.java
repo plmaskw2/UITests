@@ -7,6 +7,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.remote.DesiredCapabilities;
+
 import java.util.Map;
 
 public class ChromeDriverManager extends DriverManager {
@@ -16,24 +17,28 @@ public class ChromeDriverManager extends DriverManager {
         WebDriver driver = null;
         DesiredCapabilities cap = new DesiredCapabilities();
         cap.setCapability("browserName", "chrome");
-        cap.setCapability("browserVersion",ConfigurationUtils.properties.getProperty("chromeVersion"));
+        cap.setCapability("browserVersion", ConfigurationUtils.properties.getProperty("chromeVersion"));
         cap.setCapability(ChromeOptions.CAPABILITY, getChromeOptions());
-        switch (ConfigurationUtils.properties.getProperty("driverType")) {
+        switch (ConfigurationUtils.DRIVER_TYPE) {
             case "REMOTE":
-                if (ConfigurationUtils.properties.getProperty("selenoid").equals("true")) {
+                if (ConfigurationUtils.isSelenoid) {
                     cap.setCapability("selenoid:options", Map.of(
-                            "enableVNC", true,
-                            "enableVideo", true
+                            "enableVNC", true
                     ));
+                    if (ConfigurationUtils.isEnableVideo) {
+                        cap.setCapability("selenoid:options", Map.of(
+                                "enableVNC", true,
+                                "enableVideo", true
+                        ));
+                    }
                     return WebDriverManager.chromedriver()
                             .capabilities(cap)
-                            .remoteAddress(SELENOID_HUB)
+                            .remoteAddress(ConfigurationUtils.SELENOID_HUB + "/wd/hub")
                             .create();
-                }
-                else {
+                } else {
                     return WebDriverManager.chromedriver()
                             .capabilities(cap)
-                            .remoteAddress(GRID_HUB)
+                            .remoteAddress(ConfigurationUtils.GRID_HUB)
                             .create();
                 }
             case "LOCAL":
