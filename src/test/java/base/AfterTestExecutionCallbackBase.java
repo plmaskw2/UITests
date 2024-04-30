@@ -13,6 +13,7 @@ import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.remote.SessionId;
 
 import java.io.*;
+import java.nio.charset.StandardCharsets;
 
 public class AfterTestExecutionCallbackBase implements AfterTestExecutionCallback {
     @Override
@@ -31,13 +32,8 @@ public class AfterTestExecutionCallbackBase implements AfterTestExecutionCallbac
 
     @Attachment(value = "Video", type = "text/html")
     public static InputStream attachVideo(SessionId sessionId) {
-        InputStream byteArr = null;
-        try {
-            return Files.asByteSource(new File("<html><body><video width=\"320\" height=\"240\" controls><source src=\"http://192.168.0.121:5555/video/%s.mp4\" type=\"video/mp4\"></video></body></html>".formatted(sessionId.toString()))).openStream();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return byteArr;
+        String htmlContent = String.format("<html><body><video width=\"320\" height=\"240\" controls><source src=\"http://192.168.0.121:5555/video/%s.mp4\" type=\"video/mp4\"></video></body></html>", sessionId);
+        return new ByteArrayInputStream(htmlContent.getBytes(StandardCharsets.UTF_8));
     }
 
     @Attachment(value = "Screenshot", type = "image/png")
