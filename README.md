@@ -46,14 +46,14 @@ services:
 ```
 {
   "chrome": {
-    "default": "123.0",
+    "default": "124.0",
     "versions": {
-      "123.0": {
-        "image": "selenoid/vnc_chrome:123.0",
+      "124.0": {
+        "image": "selenoid/vnc_chrome:124.0",
         "port": "4444",
         "path": "/",
         "tmpfs": {
-          "/tmp": "size=128m"
+          "/tmp": "size=2g"
         }
       }
     }
