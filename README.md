@@ -1,3 +1,7 @@
+## Description
+
+Test environment for UI testing of application https://github.com/plmaskw2/socialmediawebapp
+
 ## Requirements
 
 To run this application, you need:
