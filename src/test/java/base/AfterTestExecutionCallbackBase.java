@@ -22,8 +22,9 @@ public class AfterTestExecutionCallbackBase implements AfterTestExecutionCallbac
     public void afterTestExecution(ExtensionContext context) {
         WebDriver driver = DriverFactory.valueOf(ConfigurationUtils.properties.getProperty("driver")).getDriverManager().getDriver();
         if (context.getExecutionException().isPresent()) {
-
-            byte[] screenshotBytes = ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
+            Augmenter augmenter = new Augmenter();
+            TakesScreenshot ts = (TakesScreenshot) augmenter.augment(driver);
+            byte[] screenshotBytes = ts.getScreenshotAs(OutputType.BYTES);
             String screenshotAsBase64 = Base64.getEncoder().encodeToString(screenshotBytes);
             Allure.addAttachment("Screenshot", "image/png", screenshotAsBase64);
 
