@@ -30,6 +30,7 @@ public class DashboardPage extends WebPage {
 
     public DashboardPage isAt() {
         webWaitUtils.waitForVisible(contentLocator, Timeouts.LOW);
+        webWaitUtils.waitForClickable(klikForumLink, Timeouts.LOW);
         return this;
     }
 
